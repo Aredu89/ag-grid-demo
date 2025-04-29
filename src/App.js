@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { AgGridReact } from "ag-grid-react";
-import { ClientSideRowModelModule } from "ag-grid-community";
-import { ModuleRegistry, themeBalham } from "ag-grid-community";
+import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'; 
 
 // Register modules before using them
-ModuleRegistry.registerModules([ClientSideRowModelModule]);
+ModuleRegistry.registerModules([AllCommunityModule]);
 
 const App = () => {
   const [rowData] = useState([
@@ -20,13 +19,10 @@ const App = () => {
   ]);
 
   return (
-    <div className="ag-theme-alpine" style={{ height: 400, width: 600, margin: "auto", marginTop: "50px" }}>
+    <div style={{ height: 400, width: 610, margin: "auto", marginTop: "50px" }}>
       <AgGridReact
         rowData={rowData}
         columnDefs={columnDefs}
-        pagination={true}
-        paginationPageSize={2}
-        theme={themeBalham}
       />
     </div>
   );
