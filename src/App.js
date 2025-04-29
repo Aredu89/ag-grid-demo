@@ -13,9 +13,9 @@ const App = () => {
   ]);
 
   const [columnDefs] = useState([
-    { field: "make", filter: true, editable: true },
-    { field: "model", filter: true, editable: true },
-    { field: "price", filter: true, editable: true },
+    { field: "make", filter: true },
+    { field: "model", filter: true },
+    { field: "price", filter: true, editable: params => params.data.price < 50000, },
   ]);
 
   return (
@@ -23,6 +23,9 @@ const App = () => {
       <AgGridReact
         rowData={rowData}
         columnDefs={columnDefs}
+        onCellValueChanged={(event) => {
+          console.log('Cell edited:', event.data);
+        }}
       />
     </div>
   );
