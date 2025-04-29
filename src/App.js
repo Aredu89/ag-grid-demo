@@ -29,7 +29,7 @@ const App = () => {
   };
 
   return (
-    <div style={{ height: 400, width: 610, margin: "auto", marginTop: "50px" }}>
+    <div style={{ height: 400, width: 660, margin: "auto", marginTop: "50px" }}>
       <button onClick={handleDelete} style={{ marginBottom: 10 }}>
         Delete Selected Rows
       </button>
