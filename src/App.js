@@ -15,7 +15,7 @@ const App = () => {
   ]);
 
   const [columnDefs] = useState([
-    { checkboxSelection: true, headerCheckboxSelection: true, filter: false, minWidth: 50, width: 50, flex: 0 },
+    { checkboxSelection: true, headerCheckboxSelection: true, minWidth: 50, width: 50, flex: 0 },
     { field: "make", filter: true },
     { field: "model", filter: true },
     { field: "price", filter: true, editable: params => params.data.price < 50000, },
@@ -24,8 +24,6 @@ const App = () => {
   const defaultColDef = {
     flex: 1,
     minWidth: 100,
-    filter: true,
-    editable: true,
   };
 
   const handleDelete = () => {
