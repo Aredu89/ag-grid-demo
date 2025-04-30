@@ -15,11 +15,18 @@ const App = () => {
   ]);
 
   const [columnDefs] = useState([
-    { checkboxSelection: true, headerCheckboxSelection: true, width: 50 },
+    { checkboxSelection: true, headerCheckboxSelection: true, filter: false, minWidth: 50, width: 50, flex: 0 },
     { field: "make", filter: true },
     { field: "model", filter: true },
     { field: "price", filter: true, editable: params => params.data.price < 50000, },
   ]);
+
+  const defaultColDef = {
+    flex: 1,
+    minWidth: 100,
+    filter: true,
+    editable: true,
+  };
 
   const handleDelete = () => {
     const selectedRows = gridRef.current.api.getSelectedRows();
@@ -29,7 +36,7 @@ const App = () => {
   };
 
   return (
-    <div style={{ height: 400, width: 660, margin: "auto", marginTop: "50px" }}>
+    <div style={{ height: 400, width: 800, margin: "auto", marginTop: "50px" }}>
       <button onClick={handleDelete} style={{ marginBottom: 10 }}>
         Delete Selected Rows
       </button>
@@ -37,6 +44,7 @@ const App = () => {
         ref={gridRef}
         rowData={rowData}
         columnDefs={columnDefs}
+        defaultColDef={defaultColDef}
         onCellValueChanged={(event) => {
           console.log('Cell edited:', event.data);
         }}
