@@ -67,6 +67,7 @@ const App = () => {
           style={{ marginRight: 5 }}
         />
         <input
+          type="number"
           placeholder="Price"
           value={newCar.price}
           onChange={(e) => setNewCar({ ...newCar, price: e.target.value })}
