@@ -7,6 +7,7 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 
 const App = () => {
   const gridRef = useRef(null);
+  const [newCar, setNewCar] = useState({ make: "", model: "", price: "" });
 
   const [rowData] = useState([
     { make: "Toyota", model: "Celica", price: 35000 },
@@ -33,8 +34,47 @@ const App = () => {
     gridRef.current.api.applyTransaction({ remove: selectedRows });
   };
 
+  const handleAdd = () => {
+    if (!newCar.make || !newCar.model || !newCar.price) {
+      return alert("Please fill in all fields");
+    }
+
+    const priceNumber = Number(newCar.price);
+    if (isNaN(priceNumber)) {
+      return alert("Price must be a number");
+    }
+
+    gridRef.current.api.applyTransaction({
+      add: [{ make: newCar.make, model: newCar.model, price: priceNumber }],
+    });
+
+    setNewCar({ make: "", model: "", price: "" });
+  };
+
   return (
     <div style={{ height: 400, width: 800, margin: "auto", marginTop: "50px" }}>
+      <div style={{ marginBottom: 10 }}>
+        <input
+          placeholder="Make"
+          value={newCar.make}
+          onChange={(e) => setNewCar({ ...newCar, make: e.target.value })}
+          style={{ marginRight: 5 }}
+        />
+        <input
+          placeholder="Model"
+          value={newCar.model}
+          onChange={(e) => setNewCar({ ...newCar, model: e.target.value })}
+          style={{ marginRight: 5 }}
+        />
+        <input
+          placeholder="Price"
+          value={newCar.price}
+          onChange={(e) => setNewCar({ ...newCar, price: e.target.value })}
+          style={{ marginRight: 5, width: 80 }}
+        />
+        <button onClick={handleAdd}>Add Car</button>
+      </div>
+
       <button onClick={handleDelete} style={{ marginBottom: 10 }}>
         Delete Selected Rows
       </button>
