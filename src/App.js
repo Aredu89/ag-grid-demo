@@ -110,7 +110,7 @@ const App = () => {
           rowSelection="multiple"
           onGridReady={handleGridReady}
           overlayLoadingTemplate={
-            '<span class="ag-overlay-loading-center">Loading rows...</span>'
+            '<span class="loading-spinner"></span>'
           }
         />
       </div>
