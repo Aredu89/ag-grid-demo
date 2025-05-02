@@ -10,19 +10,6 @@ const App = () => {
   const [rowData, setRowData] = useState([]);
   const [newUser, setNewUser] = useState({ name: "", username: "", email: "" });
 
-  // const [rowData] = useState([
-  //   { make: "Toyota", model: "Celica", price: 35000 },
-  //   { make: "Ford", model: "Mondeo", price: 32000 },
-  //   { make: "Porsche", model: "Boxster", price: 72000 },
-  // ]);
-
-  // const [columnDefs] = useState([
-  //   { checkboxSelection: true, headerCheckboxSelection: true, minWidth: 50, width: 50, flex: 0 },
-  //   { field: "make", filter: true },
-  //   { field: "model", filter: true },
-  //   { field: "price", filter: true, editable: params => params.data.price < 50000, },
-  // ]);
-
   const [columnDefs] = useState([
     { checkboxSelection: true, headerCheckboxSelection: true, minWidth: 50, width: 50, flex: 0 },
     { field: "name", filter: true },
