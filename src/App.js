@@ -9,9 +9,9 @@ const App = () => {
   const gridRef = useRef(null);
   const [rowData, setRowData] = useState([]);
   const [newUser, setNewUser] = useState({ name: "", username: "", email: "" });
+  const [loading, setLoading] = useState(false);
 
   const [columnDefs] = useState([
-    { checkboxSelection: true, headerCheckboxSelection: true, minWidth: 50, width: 50, flex: 0 },
     { field: "name", filter: true },
     { field: "username", filter: true },
     { field: "email", filter: true },
@@ -22,9 +22,15 @@ const App = () => {
     minWidth: 100,
   };
 
+  const gridOptions = {
+    rowSelection: { 
+        mode: 'multiRow' 
+    },
+  };
+
   const handleGridReady = (params) => {
     gridRef.current = params.api;
-    params.api.showLoadingOverlay();
+    setLoading(true);
   
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => res.json())
@@ -43,19 +49,19 @@ const App = () => {
         }
         setTimeout(() => {
           setRowData(multipliedData);
-          params.api.hideOverlay();
+          setLoading(false);
         }, 1000);
       })
       .catch(() => {
-        params.api.hideOverlay();
+        setLoading(false);
       });
   };
 
   const handleDelete = () => {
-    const selectedRows = gridRef.current.api.getSelectedRows();
+    const selectedRows = gridRef.current.getSelectedRows();
     if (selectedRows.length === 0) return alert("No rows selected");
 
-    gridRef.current.api.applyTransaction({ remove: selectedRows });
+    gridRef.current.applyTransaction({ remove: selectedRows });
   };
 
   const handleAdd = () => {
@@ -63,7 +69,7 @@ const App = () => {
       return alert("Please fill in all fields");
     }
 
-    gridRef.current.api.applyTransaction({
+    gridRef.current.applyTransaction({
       add: [{ name: newUser.name, username: newUser.username, email: newUser.email }],
     });
 
@@ -101,17 +107,18 @@ const App = () => {
       <div style={{ flex: 1 }}>
         <AgGridReact
           ref={gridRef}
+          gridOptions={gridOptions}
           rowData={rowData}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
           onCellValueChanged={(event) => {
             console.log('Cell edited:', event.data);
           }}
-          rowSelection="multiple"
           onGridReady={handleGridReady}
           overlayLoadingTemplate={
             '<span class="loading-spinner"></span>'
           }
+          loading={loading}
         />
       </div>
     </div>
