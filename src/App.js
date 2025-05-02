@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'; 
 
@@ -35,13 +35,16 @@ const App = () => {
     minWidth: 100,
   };
 
-  useEffect(() => {
+  const handleGridReady = (params) => {
+    gridRef.current = params.api;
+    params.api.showLoadingOverlay();
+  
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => res.json())
       .then((data) => {
         const multipliedData = [];
-
-        for (let i = 0; i < 50; i++) { // 500 rows
+  
+        for (let i = 0; i < 50; i++) {
           data.forEach((user, index) => {
             multipliedData.push({
               id: i * data.length + index + 1,
@@ -51,9 +54,15 @@ const App = () => {
             });
           });
         }
-        setRowData(multipliedData)
+        setTimeout(() => {
+          setRowData(multipliedData);
+          params.api.hideOverlay();
+        }, 1000);
+      })
+      .catch(() => {
+        params.api.hideOverlay();
       });
-  }, []);
+  };
 
   const handleDelete = () => {
     const selectedRows = gridRef.current.api.getSelectedRows();
@@ -112,6 +121,10 @@ const App = () => {
             console.log('Cell edited:', event.data);
           }}
           rowSelection="multiple"
+          onGridReady={handleGridReady}
+          overlayLoadingTemplate={
+            '<span class="ag-overlay-loading-center">Loading rows...</span>'
+          }
         />
       </div>
     </div>
