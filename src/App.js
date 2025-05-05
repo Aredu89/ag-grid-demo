@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
-import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community'; 
+import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
+import "./App.css";
 
 // Register modules before using them
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -79,34 +80,32 @@ const App = () => {
   };
 
   return (
-    <div style={{ height: "100vh", width: "100vw", display: "flex", flexDirection: "column", boxSizing: "border-box", padding: 20, }}>
-      <div style={{ marginBottom: 10 }}>
+    <div className="main-container">
+      <div className="inputs-container">
         <input
           placeholder="Name"
           value={newUser.name}
           onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-          style={{ marginRight: 5 }}
         />
         <input
           placeholder="Username"
           value={newUser.username}
           onChange={(e) => setNewUser({ ...newUser, username: e.target.value })}
-          style={{ marginRight: 5 }}
         />
         <input
           type="email"
           placeholder="Email"
+          className="email-input"
           value={newUser.email}
           onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-          style={{ marginRight: 5, width: 80 }}
         />
         <button onClick={handleAdd}>Add User</button>
       </div>
 
-      <button onClick={handleDelete} style={{ marginBottom: 10, width: 150 }}>
+      <button className="delete-button" onClick={handleDelete}>
         Delete Selected Rows
       </button>
-      <div style={{ flex: 1 }}>
+      <div className="grid-container">
         <AgGridReact
           ref={gridRef}
           gridOptions={gridOptions}
