@@ -26,6 +26,8 @@ const App = () => {
     rowSelection: { 
         mode: 'multiRow' 
     },
+    pagination: true,
+    paginationPageSize: 20,
   };
 
   const handleGridReady = (params) => {
