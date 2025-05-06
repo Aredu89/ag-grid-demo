@@ -106,13 +106,15 @@ const App = () => {
         <button onClick={handleAdd}>Add User</button>
       </div>
 
-      <button className="delete-button" onClick={handleDelete}>
-        Delete Selected Rows
-      </button>
+      <div className="buttons-container">
+        <button className="delete-button" onClick={handleDelete}>
+          Delete Selected Rows
+        </button>
+        <button className="export-csv-button" onClick={handleExport}>
+          Export CSV
+        </button>
+      </div>
 
-      <button onClick={handleExport} className="export-button">
-        Export CSV
-      </button>
       <div className="grid-container">
         <AgGridReact
           ref={gridRef}

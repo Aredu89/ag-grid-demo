@@ -19,9 +19,20 @@ button {
   cursor: pointer;
 }
 
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .delete-button {
   margin-bottom: 10px;
   width: 200px;
+}
+
+.export-csv-button {
+  background-color: transparent;
+  border: 2px solid gray;
+  width: 120px; 
 }
 
 .main-container {
