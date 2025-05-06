@@ -79,6 +79,10 @@ const App = () => {
     setNewUser({ name: "", username: "", email: "" });
   };
 
+  const handleExport = () => {
+    gridRef.current.exportDataAsCsv();
+  };
+
   return (
     <div className="main-container">
       <div className="inputs-container">
@@ -104,6 +108,10 @@ const App = () => {
 
       <button className="delete-button" onClick={handleDelete}>
         Delete Selected Rows
+      </button>
+
+      <button onClick={handleExport} className="export-button">
+        Export CSV
       </button>
       <div className="grid-container">
         <AgGridReact
