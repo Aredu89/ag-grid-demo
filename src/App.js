@@ -11,9 +11,11 @@ const App = () => {
   const [rowData, setRowData] = useState([]);
   const [newUser, setNewUser] = useState({ name: "", username: "", email: "" });
   const [loading, setLoading] = useState(false);
+  const [changes, setChanges] = useState({ added: [], updated: [], deleted: [] });
+  const hasChanges = changes.added.length || changes.updated.length || changes.deleted.length;
 
   const [columnDefs] = useState([
-    { field: "name", filter: true },
+    { field: "name", filter: true, editable: true },
     { field: "username", filter: true },
     { field: "email", filter: true },
   ]);
@@ -65,6 +67,10 @@ const App = () => {
     if (selectedRows.length === 0) return alert("No rows selected");
 
     gridRef.current.applyTransaction({ remove: selectedRows });
+    setChanges((prev) => ({
+      ...prev,
+      deleted: [...prev.deleted, ...selectedRows],
+    }));
   };
 
   const handleAdd = () => {
@@ -73,14 +79,32 @@ const App = () => {
     }
 
     gridRef.current.applyTransaction({
-      add: [{ name: newUser.name, username: newUser.username, email: newUser.email }],
+      add: [newUser],
     });
 
+    setChanges((prev) => ({
+      ...prev,
+      added: [...prev.added, newUser],
+    }));
     setNewUser({ name: "", username: "", email: "" });
+
   };
 
   const handleExport = () => {
     gridRef.current.exportDataAsCsv();
+  };
+
+  const handleCellValueChanged = (event) => {
+    console.log('Cell edited:', event.data);
+    setChanges((prev) => ({
+      ...prev,
+      updated: [...prev.updated.filter(item => item.id !== event.data.id), event.data],
+    }));
+  };
+
+  const handleSaveChanges = () => {
+    console.log("Saving changes:", changes);
+    setChanges({ added: [], updated: [], deleted: [] });
   };
 
   return (
@@ -107,9 +131,16 @@ const App = () => {
       </div>
 
       <div className="buttons-container">
-        <button className="delete-button" onClick={handleDelete}>
-          Delete Selected Rows
-        </button>
+        <div className="delete-save-container">
+          <button className="delete-button" onClick={handleDelete}>
+            Delete Selected Rows
+          </button>
+          {hasChanges > 0 && (
+            <button className="save-button" onClick={handleSaveChanges}>
+              Save Changes
+            </button>
+          )}
+        </div>
         <button className="export-csv-button" onClick={handleExport}>
           Export CSV
         </button>
@@ -122,9 +153,7 @@ const App = () => {
           rowData={rowData}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
-          onCellValueChanged={(event) => {
-            console.log('Cell edited:', event.data);
-          }}
+          onCellValueChanged={handleCellValueChanged}
           onGridReady={handleGridReady}
           overlayLoadingTemplate={
             '<span class="loading-spinner"></span>'
