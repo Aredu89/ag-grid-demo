@@ -95,7 +95,6 @@ const App = () => {
   };
 
   const handleCellValueChanged = (event) => {
-    console.log('Cell edited:', event.data);
     setChanges((prev) => ({
       ...prev,
       updated: [...prev.updated.filter(item => item.id !== event.data.id), event.data],
