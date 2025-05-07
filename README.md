@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# AG Grid React Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a **React app showcasing the power of AG Grid** — a feature-rich data grid library that efficiently handles large datasets with modern UI capabilities.
 
-## Available Scripts
+It demonstrates:
 
-In the project directory, you can run:
+- Dynamic data loading
+- Inline editing
+- Row selection and deletion
+- Adding new rows
+- Tracking and saving changes
+- Pagination
+- Loading overlays
+- Responsive design
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features Demonstrated
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### AG Grid Functionalities
 
-### `npm test`
+- **Pagination**  
+  Displays data in pages with configurable page size (20 rows per page in this demo).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Row Selection**  
+  Users can select multiple rows for batch operations like deletion.
 
-### `npm run build`
+- **Inline Editing**  
+  Users can edit cells directly in the grid. Changes are tracked until explicitly saved.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Add/Delete Rows**  
+  - New users can be added with the input fields and "Add User" button.
+  - Selected rows can be deleted using the "Delete Selected Rows" button.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Change Tracking & Save Button**  
+  - A "Save Changes" button appears when there are unsaved edits.
+  - On click, it logs the pending changes (simulating a save action to an API).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Loading Spinner**  
+  Displays a loading spinner when data is being fetched.
 
-### `npm run eject`
+- **Responsive & Styled Layout**  
+  Uses a clean layout with styled inputs, buttons, and grid container.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Technologies Used
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **React**
+- **AG Grid Community Edition**
+- **JavaScript Fetch API** (for data)
+- **CSS** (basic styling)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 📦 How to Run
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. **Clone the repository:**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   ```bash
+   git clone https://github.com/yourusername/ag-grid-react-demo.git
+   cd ag-grid-react-demo
+  ```
 
-### Code Splitting
+2. **Install dependencies:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  ```bash
+   npm install
+  ```
 
-### Analyzing the Bundle Size
+3. **Start the development server:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+  ```bash
+   npm start
+  ```
 
-### Making a Progressive Web App
+4. **Open the app in your browser:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   [http://localhost:3000](http://localhost:3000)
