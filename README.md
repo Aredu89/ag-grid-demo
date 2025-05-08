@@ -14,6 +14,11 @@ It demonstrates:
 - Responsive design
 
 ---
+# Netlify Deployed app
+
+[https://app.netlify.com/sites/ag-grid-react-demo/overview](https://app.netlify.com/sites/ag-grid-react-demo/overview)
+
+---
 
 ## Features Demonstrated
 
