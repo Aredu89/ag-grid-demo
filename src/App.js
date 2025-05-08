@@ -108,25 +108,27 @@ const App = () => {
 
   return (
     <div className="main-container">
-      <div className="inputs-container">
-        <input
-          placeholder="Name"
-          value={newUser.name}
-          onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-        />
-        <input
-          placeholder="Username"
-          value={newUser.username}
-          onChange={(e) => setNewUser({ ...newUser, username: e.target.value })}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          className="email-input"
-          value={newUser.email}
-          onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-        />
-        <button onClick={handleAdd}>Add User</button>
+      <div className="add-user-container">
+        <div className="input-container">
+          <input
+            placeholder="Name"
+            value={newUser.name}
+            onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
+          />
+          <input
+            placeholder="Username"
+            value={newUser.username}
+            onChange={(e) => setNewUser({ ...newUser, username: e.target.value })}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            className="email-input"
+            value={newUser.email}
+            onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+          />
+        </div>
+        <button className="add-user-button" onClick={handleAdd}>Add User</button>
       </div>
 
       <div className="buttons-container">
