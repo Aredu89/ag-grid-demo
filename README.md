@@ -16,7 +16,7 @@ It demonstrates:
 ---
 # Netlify Deployed app
 
-[https://app.netlify.com/sites/ag-grid-react-demo/overview](https://app.netlify.com/sites/ag-grid-react-demo/overview)
+[https://ag-grid-react-demo.netlify.app/](https://ag-grid-react-demo.netlify.app/)
 
 ---
 
